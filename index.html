@@ -1,0 +1,424 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geetha Rajamanickam - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      background-color: #1f2937; /* Tailwind gray-800, dark blue */
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .section {
+      padding: 4rem 2rem;
+    }
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+    }
+    .skill-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .skill-card:hover {
+      transform: scale(1.2);
+      box-shadow: 0 8px 16px rgba(0, 255, 255, 0.2);
+    }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #00ffff;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #00ffff;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .profile-pic {
+      border: 4px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px) scale(1);
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.3s; }
+    .fade-in:nth-child(2) { animation-delay: 0.6s; }
+    .fade-in:nth-child(3) { animation-delay: 0.9s; }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(1);
+        border: 3px solid #00ffff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        filter: brightness(1.3);
+        background-color: rgba(0, 255, 255, 0.1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translateY(15px) scale(1.05);
+        border: 3px solid #00ffff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        filter: brightness(1.3);
+        background-color: rgba(0, 255, 255, 0.1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        border: none;
+        box-shadow: none;
+        filter: brightness(1);
+        background-color: transparent;
+      }
+    }
+    .skill-logo {
+      width: 4rem;
+      height: 4rem;
+      object-fit: contain;
+      fill: #00ffff; /* Match cyan-400 color for SVGs */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 fade-in">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-cyan-400">Geetha Rajamanickam</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#home" class="nav-link text-lg">Home</a></li>
+        <li><a href="#about" class="nav-link text-lg">About</a></li>
+        <li><a href="#education" class="nav-link text-lg">Education</a></li>
+        <li><a href="#skills" class="nav-link text-lg">Skills</a></li>
+        <li><a href="#work" class="nav-link text-lg">Work Experience</a></li>
+        <li><a href="#projects" class="nav-link text-lg">Projects</a></li>
+        <li><a href="#extracurricular" class="nav-link text-lg">Extracurricular</a></li>
+        <li><a href="#contact" class="nav-link text-lg">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="section flex flex-col items-center justify-center text-center bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen fade-in">
+    <img src="images/profile.jpeg" alt="Geetha's Profile Picture" class="w-64 md:w-96 max-w-xs mx-auto mb-8 profile-pic">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Geetha Rajamanickam</h1>
+    <p class="text-xl text-cyan-400">Data Science Professional | Machine Learning Enthusiast</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">About Me</h2>
+      <div class="flex justify-center items-center">
+        <div class="text-center max-w-2xl">
+          <p class="text-lg">
+            I’m deeply passionate about data science and machine learning, with a keen interest in uncovering insights from complex datasets. I enjoy building predictive models to solve real-world challenges and am driven by the potential of AI to create impactful solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Education</h2>
+      <div class="space-y-8">
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h3 class="text-2xl font-semibold">Master of Science in Data Science</h3>
+          <p class="text-lg">University of Birmingham, Edgbaston, Birmingham, UK</p>
+          <p class="text-md text-gray-300">Sept 2024 - Sept 2025</p>
+          <p>Coursework: ML Algorithms, Visualization, Database Management, Deep Learning, Computer Vision, NLP, Fairness</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h3 class="text-2xl font-semibold">Bachelor of Engineering in Electronics and Communications Engineering</h3>
+          <p class="text-lg">Madras Institute of Technology, Anna University, Chennai, India</p>
+          <p class="text-md text-gray-300">Jul 2019 - Jun 2023</p>
+          <p>Coursework: Machine Learning and AI, Python, Operating Systems, Information Security, Linear Algebra, Management</p>
+          <p>Grade: First Class Honors</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/python.png" alt="Python Logo" class="skill-logo mx-auto mb-2">
+          <p>Python</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/R.png" alt="R Logo" class="skill-logo mx-auto mb-2">
+          <p>R</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/sql.png" alt="SQL Logo" class="skill-logo mx-auto mb-2">
+          <p>SQL</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/java.png" alt="Java Logo" class="skill-logo mx-auto mb-2">
+          <p>Java</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/tableau.png" alt="Tableau Logo" class="skill-logo mx-auto mb-2">
+          <p>Tableau</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/powerbi.png" alt="Power BI Logo" class="skill-logo mx-auto mb-2">
+          <p>PowerBI</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/pytorch.png" alt="PyTorch Logo" class="skill-logo mx-auto mb-2">
+          <p>PyTorch</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/fastapi.png" alt="Fast API Logo" class="skill-logo mx-auto mb-2">
+          <p>Fast API</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/pyspark.png" alt="PySpark Logo" class="skill-logo mx-auto mb-2">
+          <p>PySpark</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/hadoop.png" alt="Hadoop Logo" class="skill-logo mx-auto mb-2">
+          <p>Hadoop</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-brain text-6xl text-cyan-400 mb-2"></i>
+          <p>Machine Learning</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-brain text-6xl text-cyan-400 mb-2"></i>
+          <p>NLP</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-robot text-6xl text-cyan-400 mb-2"></i>
+          <p>LLM</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-chart-line text-6xl text-cyan-400 mb-2"></i>
+          <p>Time Series</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/aws.png" alt="AWS Logo" class="skill-logo mx-auto mb-2">
+          <p>AWS</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fab fa-git-alt text-6xl text-cyan-400 mb-2"></i>
+          <p>Git</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section -->
+  <section id="work" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Work Experience</h2>
+      <div class="space-y-8">
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h3 class="text-2xl font-semibold">Data Scientist</h3>
+          <p class="text-lg">Reliance Industries Limited - JIO, Bangalore, India</p>
+          <p class="text-md text-gray-300">Oct 2023 - Jun 2024</p>
+          <ul class="list-disc pl-6 mt-2 text-lg">
+            <li>Generated actionable insights by producing monthly KPI reports, benchmarking metrics against competitors, and identifying key metrics (activity level, rumination minutes of cattle), enhancing marketing effectiveness by 15%.</li>
+            <li>Analyzed large datasets (over 5,000 rows monthly from 50-60 CSV files) with high accuracy using Pandas and NumPy for data cleaning and preprocessing.</li>
+            <li>Supported strategic decisions through correlations and R² calculations between activity levels and health metrics, improving cattle health monitoring accuracy.</li>
+            <li>Automated data fetching, cleaning, and visualization with Python scripts, creating management-facing reports with statistical insights, correlation plots, and performance comparisons.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">Sentiment Analysis using LLM</h3>
+            <p class="mb-4">Developed a RoBERTa-based model for sentiment analysis on Amazon Reviews, achieving 96% accuracy. Applied weighted loss and data augmentation to handle class imbalance, enhancing model performance.</p>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">Predicting Olympics Performance</h3>
+            <p class="mb-4">Created predictive models using Random Forest, XGBoost, and LightGBM to forecast Olympic medal tallies based on socioeconomic factors. Achieved an R² score of 0.89 with LightGBM, ensuring reliable predictions.</p>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">Breast Cancer Detection</h3>
+            <p class="mb-4">Built machine learning models (Decision Trees, Random Forests, SVM) for early breast cancer detection. Achieved 95% accuracy through robust data preprocessing, improving diagnostic reliability.</p>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">Intelligent Vehicle Damage Assessment</h3>
+            <p class="mb-4">Designed a VGG16-based CNN model to classify vehicle damage from images, cutting insurance claim processing time by 40%. Built a Flask-based full-stack web app for real-time damage assessment, utilizing IBM Watson Cloud for secure data storage.</p>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">Airbnb Data Visualization Dashboard</h3>
+            <p class="mb-4">Developed an interactive Tableau dashboard for New York City Airbnb listings, analyzing neighborhood trends, pricing, and reviews. Incorporated donut charts, price heat maps, and geospatial visualizations to provide actionable insights into booking patterns.</p>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">LinkedIn Post Generator</h3>
+            <p class="mb-4">Built a LinkedIn Post Generator using the Llama 3.2 model to create professional posts, achieving 92% content coherence. Fine-tuned the model with few-shot learning and deployed it via a Streamlit web interface for real-time, user-driven post generation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extracurricular Section -->
+  <section id="extracurricular" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Extracurricular Activities</h2>
+      <div class="space-y-8">
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h3 class="text-2xl font-semibold">Student Representative, School of Computer Science</h3>
+          <p class="text-lg">University of Birmingham, Birmingham, UK</p>
+          <p class="text-md text-gray-300">Oct 2024 - Present</p>
+          <ul class="list-disc pl-6 mt-2 text-lg">
+            <li>Represents MSc Data Science students by gathering academic feedback.</li>
+            <li>Presents findings at student-staff forums to address concerns effectively.</li>
+            <li>Ensures resolution communication to improve student experience.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section fade-in">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-8">Contact</h2>
+      <div class="max-w-lg mx-auto text-center">
+        <p class="mb-4">Connect with me on:</p>
+        <div class="flex justify-center space-x-6">
+          <a href="/cdn-cgi/l/email-protection#2007050514080112010a010d010e09030b010d5120070d01090c4e030f0d" class="text-cyan-400 hover:text-cyan-300">
+            <i class="fas fa-envelope text-3xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/geetharajamanickam/" class="text-cyan-400 hover:text-cyan-300">
+            <i class="fab fa-linkedin text-3xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-4 text-center fade-in">
+    <p>© 2025 Geetha Rajamanickam. All rights reserved.</p>
+  </footer>
+
+  <script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+
+          // Convert sheet to JSON to filter blank rows
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          // Filter out blank rows (rows where all cells are empty, null, or undefined)
+          var filteredData = jsonData.filter(row =>
+            row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+          );
+
+          // Convert filtered JSON back to CSV
+          var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
+  </script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Trigger fade-in animations on scroll
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-50px' });
+    fadeInElements.forEach(el => observer.observe(el));
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931aef6ee9b7b043',t:'MTc0NDg4MjU1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
