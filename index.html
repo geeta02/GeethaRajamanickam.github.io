@@ -1,33 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row =>
-                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
-                );
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -47,10 +18,28 @@
     }
     .project-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-height: 200px; /* Ensure all project cards have a consistent minimum height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .project-card:hover {
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+    }
+    .project-card .p-4 {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-card p {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Limit to 3 lines for consistency */
+      -webkit-box-orient: vertical;
     }
     .skill-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -287,37 +276,37 @@
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">Sentiment Analysis using LLM</h3>
-            <p class="mb-4">Developed a RoBERTa-based model for sentiment analysis on Amazon Reviews, achieving 96% accuracy. Applied weighted loss and data augmentation to handle class imbalance, enhancing model performance.</p>
+            <p class="mb-4">Developed a fine-tuned RoBERTa model for sentiment analysis on Amazon Reviews, achieving 96% accuracy. Applied random oversampling, back-translation, and weighted CrossEntropyLoss to address class imbalance, with F1-scores of 0.60 (minority) and 0.98 (majority).</p>
           </div>
         </div>
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">Predicting Olympics Performance</h3>
-            <p class="mb-4">Created predictive models using Random Forest, XGBoost, and LightGBM to forecast Olympic medal tallies based on socioeconomic factors. Achieved an R² score of 0.89 with LightGBM, ensuring reliable predictions.</p>
+            <p class="mb-4">Analyzed socioeconomic factors like GDP and HDI to predict Olympic medal counts using Random Forest, XGBoost, and LightGBM. Achieved 0.89 R² with LightGBM, highlighting education and industrialization as key predictors.</p>
           </div>
         </div>
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">Breast Cancer Detection</h3>
-            <p class="mb-4">Built machine learning models (Decision Trees, Random Forests, SVM) for early breast cancer detection. Achieved 95% accuracy through robust data preprocessing, improving diagnostic reliability.</p>
+            <p class="mb-4">Built ML models (Decision Trees, Random Forests, SVM) for early breast cancer detection, achieving 95% accuracy. Enhanced reliability through feature scaling, missing value handling, and robust feature selection.</p>
           </div>
         </div>
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Intelligent Vehicle Damage Assessment</h3>
-            <p class="mb-4">Designed a VGG16-based CNN model to classify vehicle damage from images, cutting insurance claim processing time by 40%. Built a Flask-based full-stack web app for real-time damage assessment, utilizing IBM Watson Cloud for secure data storage.</p>
+            <h3 class="text-xl font-semibold mb-2">Vehicle Damage Assessment</h3>
+            <p class="mb-4">Developed a VGG16-based CNN to classify vehicle damage, reducing insurance claim processing by 40%. Built a Flask web app with IBM Watson Cloud integration for real-time damage assessment and secure data storage.</p>
           </div>
         </div>
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Risk Assessment Analysis in Banking Sector</h3>
-            <p class="mb-4">Integrated Python with MySQL for efficient data retrieval, preprocessed banking dataset (3000 records) using Pandas, and visualized insights with Seaborn. Conducted EDA to identify financial behavior correlations and built an interactive PowerBI dashboard to monitor risk metrics like loans and deposits, aiding stakeholder decision-making.</p>
+            <h3 class="text-xl font-semibold mb-2">Banking Risk Assessment</h3>
+            <p class="mb-4">Integrated Python-MySQL for data retrieval and preprocessed 3000 banking records. Conducted EDA to uncover financial behavior patterns and built a PowerBI dashboard to monitor risk metrics like loans and deposits.</p>
           </div>
         </div>
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">LinkedIn Post Generator</h3>
-            <p class="mb-4">Built a LinkedIn Post Generator using the Llama 3.2 model to create professional posts, achieving 92% content coherence. Fine-tuned the model with few-shot learning and deployed it via a Streamlit web interface for real-time, user-driven post generation.</p>
+            <p class="mb-4">Created a Llama 3.2-based LinkedIn Post Generator with 92% coherence. Fine-tuned with few-shot learning and deployed via Streamlit for real-time, professional post generation based on user inputs.</p>
           </div>
         </div>
       </div>
@@ -422,6 +411,5 @@
     }, { threshold: 0.2, rootMargin: '-50px' });
     fadeInElements.forEach(el => observer.observe(el));
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931aef6ee9b7b043',t:'MTc0NDg4MjU1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
