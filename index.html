@@ -18,7 +18,7 @@
     }
     .project-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-height: 200px; /* Ensure all project cards have a consistent minimum height */
+      min-height: 280px; /* Increased height for more content */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -27,19 +27,21 @@
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
     }
-    .project-card .p-4 {
+    .project-card .p-6 {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .project-card p {
+    .project-card .project-description {
       flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* Limit to 3 lines for consistency */
-      -webkit-box-orient: vertical;
+      margin-bottom: 1rem;
+    }
+    .project-card .project-date {
+      font-size: 0.875rem;
+      color: #00ffff;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
     }
     .skill-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -112,6 +114,20 @@
       object-fit: contain;
       fill: #00ffff; /* Match cyan-400 color for SVGs */
     }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .project-link:hover {
+      color: #67e8f9;
+    }
+    .project-link i {
+      margin-left: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -146,7 +162,7 @@
       <div class="flex justify-center items-center">
         <div class="text-center max-w-2xl">
           <p class="text-lg">
-            I’m deeply passionate about data science and machine learning, with a keen interest in uncovering insights from complex datasets. I enjoy building predictive models to solve real-world challenges and am driven by the potential of AI to create impactful solutions.
+            I'm deeply passionate about data science and machine learning, with a keen interest in uncovering insights from complex datasets. I enjoy building predictive models to solve real-world challenges and am driven by the potential of AI to create impactful solutions.
           </p>
         </div>
       </div>
@@ -244,6 +260,10 @@
           <i class="fab fa-git-alt text-6xl text-cyan-400 mb-2"></i>
           <p>Git</p>
         </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fab fa-docker text-6xl text-cyan-400 mb-2"></i>
+          <p>Docker</p>
+        </div>
       </div>
     </div>
   </section>
@@ -258,10 +278,10 @@
           <p class="text-lg">Reliance Industries Limited - JIO, Bangalore, India</p>
           <p class="text-md text-gray-300">Oct 2023 - Jun 2024</p>
           <ul class="list-disc pl-6 mt-2 text-lg">
-            <li>Generated actionable insights by producing monthly KPI reports, benchmarking metrics against competitors, and identifying key metrics (activity level, rumination minutes of cattle), enhancing marketing effectiveness by 15%.</li>
-            <li>Analyzed large datasets (over 5,000 rows monthly from 50-60 CSV files) with high accuracy using Pandas and NumPy for data cleaning and preprocessing.</li>
-            <li>Supported strategic decisions through correlations and R² calculations between activity levels and health metrics, improving cattle health monitoring accuracy.</li>
-            <li>Automated data fetching, cleaning, and visualization with Python scripts, creating management-facing reports with statistical insights, correlation plots, and performance comparisons.</li>
+            <li>Engineered Python-based scripts to automate the extraction of daily cattle health data from Kibana. Streamlined preprocessing of 30-50 raw Excel data (5000+ rows) using Pandas and NumPy, merging, cleaning, and transforming data for efficient analysis.</li>
+            <li>Applied correlation and R2 calculations to analyze relationships between cattle rumination and activity levels, delivering actionable insights through data-driven reporting.</li>
+            <li>Reduced manual reporting efforts by 80% through fully automated end-to-end reporting ETL pipelines, including data cleaning, statistical analysis, and visualization using Matplotlib and Seaborn.</li>
+            <li>Collaborated with the engineering team to enhance data collection processes and align data outputs with business requirements, contributing to faster, data-driven strategies.</li>
           </ul>
         </div>
       </div>
@@ -272,43 +292,95 @@
   <section id="projects" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- FinanceLM Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Sentiment Analysis using LLM</h3>
-            <p class="mb-4">Developed a fine-tuned RoBERTa model for sentiment analysis on Amazon Reviews, achieving 96% accuracy. Applied random oversampling, back-translation, and weighted CrossEntropyLoss to address class imbalance, with F1-scores of 0.60 (minority) and 0.98 (majority).</p>
+          <div class="p-6">
+            <div class="project-date">Jun 2025 – Sept 2025</div>
+            <h3 class="text-xl font-semibold mb-2">FinanceLM: Multi-Agent System for Financial Intelligence</h3>
+            <div class="project-description">
+              <p class="mb-3">Designed and implemented a modular multi-agent AI platform, integrating PDF summarization, contract analysis (clause classification, risk assessment, RAG-based Q&A), and stock price forecasting using the Prophet model.</p>
+              <p>Orchestrated agents with Llama 3, Lang Chain, FAISS and SentenceTransformers, and developed a Model Context Protocol (MCP) based Finance Assistant for real-time financial data retrieval via APIs. Achieved evaluation metrics of ROUGE-1 F1 0.532 and EM 0.667.</p>
+            </div>
           </div>
         </div>
+
+        <!-- Risk Assessment Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Predicting Olympics Performance</h3>
-            <p class="mb-4">Analyzed socioeconomic factors like GDP and HDI to predict Olympic medal counts using Random Forest, XGBoost, and LightGBM. Achieved 0.89 R² with LightGBM, highlighting education and industrialization as key predictors.</p>
+          <div class="p-6">
+            <div class="project-date">Apr 2025 – May 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Risk Assessment Analysis for Banking Sector</h3>
+            <div class="project-description">
+              <p class="mb-3">Conducted statistical and exploratory data analysis (EDA) on over 3000 banking customer records using Python and MySQL, extracting insights on financial behavior through visualization of correlation trends, distributions, and key risk metrics.</p>
+              <p>Built and deployed interactive dashboards in Power BI, connecting live to MySQL to enable dynamic monitoring of risk indicators and facilitate stakeholder-informed decision-making.</p>
+            </div>
+            <a href="https://github.com/geeta02/Risk-Assessment-Analysis-in-Banking-Sector.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
         </div>
+
+        <!-- Olympics Performance Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Breast Cancer Detection</h3>
-            <p class="mb-4">Built ML models (Decision Trees, Random Forests, SVM) for early breast cancer detection, achieving 95% accuracy. Enhanced reliability through feature scaling, missing value handling, and robust feature selection.</p>
+          <div class="p-6">
+            <div class="project-date">Jan 2025 – Mar 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Predicting Summer Olympics Performance</h3>
+            <div class="project-description">
+              <p class="mb-3">Performed data acquisition, cleaning, feature engineering, normalization, and outlier detection on Olympic and socio-economic datasets to create a robust analytical dataset, uncovering correlations between education, industrialization, and medal counts.</p>
+              <p>Developed and compared machine learning models (Random Forest, XGBoost, LightGBM), with LightGBM achieving R² 0.895, accurately forecasting medal counts and explaining nearly 90% of performance variance.</p>
+            </div>
+            <a href="https://github.com/geeta02/olympics-prediction.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
         </div>
+
+        <!-- LinkedIn Post Generator Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Vehicle Damage Assessment</h3>
-            <p class="mb-4">Developed a VGG16-based CNN to classify vehicle damage, reducing insurance claim processing by 40%. Built a Flask web app with IBM Watson Cloud integration for real-time damage assessment and secure data storage.</p>
+          <div class="p-6">
+            <div class="project-date">Mar 2025 – May 2025</div>
+            <h3 class="text-xl font-semibold mb-2">LinkedIn Post Generator using LLM</h3>
+            <div class="project-description">
+              <p class="mb-3">Fine-tuned Llama 3.2 with few-shot learning to generate contextually relevant LinkedIn posts, achieving 92% coherence in output quality.</p>
+              <p>Developed and deployed a Streamlit web application integrating Python scripts and the Llama 3.2 API, enabling real-time, user-driven content generation and demonstrating practical LLM deployment.</p>
+            </div>
+            <a href="https://github.com/geeta02/genai-post-generator.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
         </div>
+
+        <!-- Docker Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">Banking Risk Assessment</h3>
-            <p class="mb-4">Integrated Python-MySQL for data retrieval and preprocessed 3000 banking records. Conducted EDA to uncover financial behavior patterns and built a PowerBI dashboard to monitor risk metrics like loans and deposits.</p>
+          <div class="p-6">
+            <div class="project-date">May 2025 – Jun 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Dockerizing and Automating Python Application Deployment</h3>
+            <div class="project-description">
+              <p class="mb-3">Containerized a Python script using a custom Docker File, enabling consistent environment replication and scalable deployment via Docker Hub. Configured GitHub Actions, triggering image builds and deployment on every push or pull request to the main branch.</p>
+              <p>Implemented version-controlled workflows with automated build validation, ensuring reliable integration and minimizing manual deployment overhead.</p>
+            </div>
+            <a href="https://github.com/geeta02/dockerimagehub.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
         </div>
+
+        <!-- Sentiment Analysis Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">LinkedIn Post Generator</h3>
-            <p class="mb-4">Created a Llama 3.2-based LinkedIn Post Generator with 92% coherence. Fine-tuned with few-shot learning and deployed via Streamlit for real-time, professional post generation based on user inputs.</p>
+          <div class="p-6">
+            <div class="project-date">Nov 2024 – Jan 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Sentiment Analysis using Large Language Models</h3>
+            <div class="project-description">
+              <p class="mb-3">Fine-tuned RoBERTa model on Amazon Reviews datasets, achieving 96% accuracy with F1-scores of 0.60 (minority) and 0.98 (majority) through class balancing and weighted loss.</p>
+              <p>Applied random oversampling and back-translation data augmentation to mitigate dataset imbalance and enhance model generalizability.</p>
+            </div>
+            <a href="https://github.com/geeta02/Sentiment-Analysis-Using-LLM.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -321,11 +393,10 @@
         <div class="bg-gray-700 p-6 rounded-lg">
           <h3 class="text-2xl font-semibold">Student Representative, School of Computer Science</h3>
           <p class="text-lg">University of Birmingham, Birmingham, UK</p>
-          <p class="text-md text-gray-300">Oct 2024 - Present</p>
+          <p class="text-md text-gray-300">Oct 2024 - Sept 2025</p>
           <ul class="list-disc pl-6 mt-2 text-lg">
-            <li>Represents MSc Data Science students by gathering academic feedback.</li>
-            <li>Presents findings at student-staff forums to address concerns effectively.</li>
-            <li>Ensures resolution communication to improve student experience.</li>
+            <li>Represents MSc Data Science students, gathering feedback, presenting at student-staff forums, and effectively resolving 90% of reported concerns. 
+              Facilitated communication between students and faculty, ensuring issue resolution.</li>
           </ul>
         </div>
       </div>
