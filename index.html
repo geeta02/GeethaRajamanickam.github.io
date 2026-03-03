@@ -18,7 +18,7 @@
     }
     .project-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-height: 280px; /* Increased height for more content */
+      min-height: 280px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -112,7 +112,7 @@
       width: 4rem;
       height: 4rem;
       object-fit: contain;
-      fill: #00ffff; /* Match cyan-400 color for SVGs */
+      fill: #00ffff;
     }
     .project-link {
       display: inline-flex;
@@ -131,6 +131,7 @@
   </style>
 </head>
 <body>
+
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 fade-in">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -155,14 +156,17 @@
     <p class="text-xl text-cyan-400">Data Science Professional | Machine Learning Enthusiast</p>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section (updated) -->
   <section id="about" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">About Me</h2>
       <div class="flex justify-center items-center">
-        <div class="text-center max-w-2xl">
-          <p class="text-lg">
-            I'm deeply passionate about data science and machine learning, with a keen interest in uncovering insights from complex datasets. I enjoy building predictive models to solve real-world challenges and am driven by the potential of AI to create impactful solutions.
+        <div class="text-center max-w-3xl text-lg leading-relaxed">
+          <p>
+            Analytics Engineer with strong expertise in SQL, Python, ELT pipeline development, and data architecture. Experienced in transforming
+            raw datasets into canonical, production-grade data models that power dashboards, financial reporting, and strategic decision-making.
+            Proven ability to ensure data accuracy, completeness, governance, and usability at scale. Adept at bridging technical engineering
+            implementation with business stakeholders to deliver high-impact, self-serve analytics solutions.
           </p>
         </div>
       </div>
@@ -223,7 +227,7 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
+  <!-- Skills Section (Snowflake added) -->
   <section id="skills" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Skills</h2>
@@ -268,6 +272,11 @@
           <img src="images/icons/hadoop.png" alt="Hadoop Logo" class="skill-logo mx-auto mb-2">
           <p>Hadoop</p>
         </div>
+        <!-- Snowflake added here -->
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-snowflake text-6xl text-cyan-400 mb-2"></i>
+          <p>Snowflake</p>
+        </div>
         <div class="skill-card p-4 bg-gray-700 rounded-lg">
           <i class="fas fa-brain text-6xl text-cyan-400 mb-2"></i>
           <p>Machine Learning</p>
@@ -300,14 +309,12 @@
     </div>
   </section>
 
-
   <!-- Projects Section -->
   <section id="projects" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- FinanceLM Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Jun 2025 – Sept 2025</div>
@@ -319,7 +326,6 @@
           </div>
         </div>
 
-        <!-- Risk Assessment Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Apr 2025 – May 2025</div>
@@ -334,7 +340,6 @@
           </div>
         </div>
 
-        <!-- Olympics Performance Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Jan 2025 – Mar 2025</div>
@@ -349,7 +354,6 @@
           </div>
         </div>
 
-        <!-- LinkedIn Post Generator Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Mar 2025 – May 2025</div>
@@ -364,7 +368,6 @@
           </div>
         </div>
 
-        <!-- Docker Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">May 2025 – Jun 2025</div>
@@ -379,7 +382,6 @@
           </div>
         </div>
 
-        <!-- Sentiment Analysis Project -->
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Nov 2024 – Jan 2025</div>
@@ -423,9 +425,6 @@
       <div class="max-w-lg mx-auto text-center">
         <p class="mb-4">Connect with me on:</p>
         <div class="flex justify-center space-x-6">
-          <a href="/cdn-cgi/l/email-protection#2007050514080112010a010d010e09030b010d5120070d01090c4e030f0d" class="text-cyan-400 hover:text-cyan-300">
-            <i class="fas fa-envelope text-3xl"></i>
-          </a>
           <a href="https://www.linkedin.com/in/geetharajamanickam/" class="text-cyan-400 hover:text-cyan-300">
             <i class="fab fa-linkedin text-3xl"></i>
           </a>
@@ -439,40 +438,9 @@
 
   <!-- Footer -->
   <footer class="bg-gray-900 py-4 text-center fade-in">
-    <p>© 2025 Geetha Rajamanickam. All rights reserved.</p>
+    <p>© 2026 Geetha Rajamanickam. All rights reserved.</p>
   </footer>
 
-  <script type="text/javascript">
-    var gk_isXlsx = false;
-    var gk_xlsxFileLookup = {};
-    var gk_fileData = {};
-    function loadFileData(filename) {
-      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-        try {
-          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-          var firstSheetName = workbook.SheetNames[0];
-          var worksheet = workbook.Sheets[firstSheetName];
-
-          // Convert sheet to JSON to filter blank rows
-          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-          // Filter out blank rows (rows where all cells are empty, null, or undefined)
-          var filteredData = jsonData.filter(row =>
-            row.some(cell => cell !== '' && cell !== null && cell !== undefined)
-          );
-
-          // Convert filtered JSON back to CSV
-          var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
-          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-          return csv;
-        } catch (e) {
-          console.error(e);
-          return "";
-        }
-      }
-      return gk_fileData[filename] || "";
-    }
-  </script>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // Smooth scrolling for nav links
     document.querySelectorAll('.nav-link').forEach(anchor => {
@@ -489,10 +457,12 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
         }
       });
-    }, { threshold: 0.2, rootMargin: '-50px' });
+    }, { threshold: 0.1 });
+
     fadeInElements.forEach(el => observer.observe(el));
   </script>
 </body>
