@@ -131,7 +131,6 @@
   </style>
 </head>
 <body>
-
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 fade-in">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -156,17 +155,14 @@
     <p class="text-xl text-cyan-400">Data Science Professional | Machine Learning Enthusiast</p>
   </section>
 
-  <!-- About Section (updated) -->
+  <!-- About Section -->
   <section id="about" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">About Me</h2>
       <div class="flex justify-center items-center">
         <div class="text-center max-w-3xl text-lg leading-relaxed">
           <p>
-            Analytics Engineer with strong expertise in SQL, Python, ELT pipeline development, and data architecture. Experienced in transforming
-            raw datasets into canonical, production-grade data models that power dashboards, financial reporting, and strategic decision-making.
-            Proven ability to ensure data accuracy, completeness, governance, and usability at scale. Adept at bridging technical engineering
-            implementation with business stakeholders to deliver high-impact, self-serve analytics solutions.
+            Data Scientist with hands-on experience in machine learning modelling, statistical analysis, ETL pipeline development, and model deployment. Proven ability to transform large-scale structured datasets into predictive insights that drive measurable commercial impact. Experienced in feature engineering, regression modelling, exploratory data analysis, and stakeholder collaboration.
           </p>
         </div>
       </div>
@@ -189,7 +185,6 @@
             <li>Queried and validated data from ABP, VOA, and Land Registry sources using Snowflake to identify opportunity availability across office and premises, strengthening the internal data ecosystem and supporting more accurate property insights.</li>
           </ul>
         </div>
-
         <div class="bg-gray-700 p-6 rounded-lg">
           <h3 class="text-2xl font-semibold">Data Scientist</h3>
           <p class="text-lg">Reliance Industries Limited - JIO, Bangalore, India</p>
@@ -227,11 +222,11 @@
     </div>
   </section>
 
-  <!-- Skills Section (Snowflake added) -->
+  <!-- Skills Section -->
   <section id="skills" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
         <div class="skill-card p-4 bg-gray-700 rounded-lg">
           <img src="images/icons/python.png" alt="Python Logo" class="skill-logo mx-auto mb-2">
           <p>Python</p>
@@ -272,9 +267,8 @@
           <img src="images/icons/hadoop.png" alt="Hadoop Logo" class="skill-logo mx-auto mb-2">
           <p>Hadoop</p>
         </div>
-        <!-- Snowflake added here -->
         <div class="skill-card p-4 bg-gray-700 rounded-lg">
-          <i class="fas fa-snowflake text-6xl text-cyan-400 mb-2"></i>
+          <img src="images/snowflake.png" alt="Snowflake Logo" class="skill-logo mx-auto mb-2">
           <p>Snowflake</p>
         </div>
         <div class="skill-card p-4 bg-gray-700 rounded-lg">
@@ -314,7 +308,7 @@
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+
         <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
           <div class="p-6">
             <div class="project-date">Jun 2025 – Sept 2025</div>
@@ -410,7 +404,7 @@
           <p class="text-lg">University of Birmingham, Birmingham, UK</p>
           <p class="text-md text-gray-300">Oct 2024 - Sept 2025</p>
           <ul class="list-disc pl-6 mt-2 text-lg">
-            <li>Represents MSc Data Science students, gathering feedback, presenting at student-staff forums, and effectively resolving 90% of reported concerns. 
+            <li>Represents MSc Data Science students, gathering feedback, presenting at student-staff forums, and effectively resolving 90% of reported concerns.
               Facilitated communication between students and faculty, ensuring issue resolution.</li>
           </ul>
         </div>
@@ -451,7 +445,6 @@
         targetElement.scrollIntoView({ behavior: 'smooth' });
       });
     });
-
     // Trigger fade-in animations on scroll
     const fadeInElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
@@ -462,7 +455,6 @@
         }
       });
     }, { threshold: 0.1 });
-
     fadeInElements.forEach(el => observer.observe(el));
   </script>
 </body>
