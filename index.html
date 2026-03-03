@@ -77,8 +77,8 @@
     .fade-in:nth-child(2) { animation-delay: 0.6s; }
     .fade-in:nth-child(3) { animation-delay: 0.9s; }
     @keyframes fadeIn {
-      0%   { opacity: 0; transform: translateY(30px) scale(1); border: 3px solid #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.7); filter: brightness(1.3); background-color: rgba(0,255,255,0.1); }
-      50%  { opacity: 0.5; transform: translateY(15px) scale(1.05); border: 3px solid #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.7); filter: brightness(1.3); background-color: rgba(0,255,255,0.1); }
+      0% { opacity: 0; transform: translateY(30px) scale(1); border: 3px solid #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.7); filter: brightness(1.3); background-color: rgba(0,255,255,0.1); }
+      50% { opacity: 0.5; transform: translateY(15px) scale(1.05); border: 3px solid #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.7); filter: brightness(1.3); background-color: rgba(0,255,255,0.1); }
       100% { opacity: 1; transform: translateY(0) scale(1); border: none; box-shadow: none; filter: brightness(1); background-color: transparent; }
     }
     .skill-logo {
@@ -201,7 +201,70 @@
           <img src="images/icons/python.png" alt="Python Logo" class="skill-logo mx-auto mb-2">
           <p>Python</p>
         </div>
-        <!-- ... other skill cards remain unchanged ... -->
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/R.png" alt="R Logo" class="skill-logo mx-auto mb-2">
+          <p>R</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/sql.png" alt="SQL Logo" class="skill-logo mx-auto mb-2">
+          <p>SQL</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/java.png" alt="Java Logo" class="skill-logo mx-auto mb-2">
+          <p>Java</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/tableau.png" alt="Tableau Logo" class="skill-logo mx-auto mb-2">
+          <p>Tableau</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/powerbi.png" alt="Power BI Logo" class="skill-logo mx-auto mb-2">
+          <p>PowerBI</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/pytorch.png" alt="PyTorch Logo" class="skill-logo mx-auto mb-2">
+          <p>PyTorch</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/fastapi.png" alt="Fast API Logo" class="skill-logo mx-auto mb-2">
+          <p>Fast API</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/pyspark.png" alt="PySpark Logo" class="skill-logo mx-auto mb-2">
+          <p>PySpark</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/hadoop.png" alt="Hadoop Logo" class="skill-logo mx-auto mb-2">
+          <p>Hadoop</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/snowflake.png" alt="Snowflake Logo" class="skill-logo mx-auto mb-2">
+          <p>Snowflake</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-brain text-6xl text-cyan-400 mb-2"></i>
+          <p>Machine Learning</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-brain text-6xl text-cyan-400 mb-2"></i>
+          <p>NLP</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-robot text-6xl text-cyan-400 mb-2"></i>
+          <p>LLM</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fas fa-chart-line text-6xl text-cyan-400 mb-2"></i>
+          <p>Time Series</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <img src="images/icons/aws.png" alt="AWS Logo" class="skill-logo mx-auto mb-2">
+          <p>AWS</p>
+        </div>
+        <div class="skill-card p-4 bg-gray-700 rounded-lg">
+          <i class="fab fa-git-alt text-6xl text-cyan-400 mb-2"></i>
+          <p>Git</p>
+        </div>
         <div class="skill-card p-4 bg-gray-700 rounded-lg">
           <i class="fab fa-docker text-6xl text-cyan-400 mb-2"></i>
           <p>Docker</p>
@@ -215,8 +278,81 @@
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Your project cards remain unchanged -->
-        <!-- ... -->
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">Jun 2025 – Sept 2025</div>
+            <h3 class="text-xl font-semibold mb-2">FinanceLM: Multi-Agent System for Financial Intelligence</h3>
+            <div class="project-description">
+              <p class="mb-3">Designed and implemented a modular multi-agent AI platform, integrating PDF summarization, contract analysis (clause classification, risk assessment, RAG-based Q&A), and stock price forecasting using the Prophet model.</p>
+              <p>Orchestrated agents with Llama 3, Lang Chain, FAISS and SentenceTransformers, and developed a Model Context Protocol (MCP) based Finance Assistant for real-time financial data retrieval via APIs. Achieved evaluation metrics of ROUGE-1 F1 0.532 and EM 0.667.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">Apr 2025 – May 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Risk Assessment Analysis for Banking Sector</h3>
+            <div class="project-description">
+              <p class="mb-3">Conducted statistical and exploratory data analysis (EDA) on over 3000 banking customer records using Python and MySQL, extracting insights on financial behavior through visualization of correlation trends, distributions, and key risk metrics.</p>
+              <p>Built and deployed interactive dashboards in Power BI, connecting live to MySQL to enable dynamic monitoring of risk indicators and facilitate stakeholder-informed decision-making.</p>
+            </div>
+            <a href="https://github.com/geeta02/Risk-Assessment-Analysis-in-Banking-Sector.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">Jan 2025 – Mar 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Predicting Summer Olympics Performance</h3>
+            <div class="project-description">
+              <p class="mb-3">Performed data acquisition, cleaning, feature engineering, normalization, and outlier detection on Olympic and socio-economic datasets to create a robust analytical dataset, uncovering correlations between education, industrialization, and medal counts.</p>
+              <p>Developed and compared machine learning models (Random Forest, XGBoost, LightGBM), with LightGBM achieving R² 0.895, accurately forecasting medal counts and explaining nearly 90% of performance variance.</p>
+            </div>
+            <a href="https://github.com/geeta02/olympics-prediction.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">Mar 2025 – May 2025</div>
+            <h3 class="text-xl font-semibold mb-2">LinkedIn Post Generator using LLM</h3>
+            <div class="project-description">
+              <p class="mb-3">Fine-tuned Llama 3.2 with few-shot learning to generate contextually relevant LinkedIn posts, achieving 92% coherence in output quality.</p>
+              <p>Developed and deployed a Streamlit web application integrating Python scripts and the Llama 3.2 API, enabling real-time, user-driven content generation and demonstrating practical LLM deployment.</p>
+            </div>
+            <a href="https://github.com/geeta02/genai-post-generator.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">May 2025 – Jun 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Dockerizing and Automating Python Application Deployment</h3>
+            <div class="project-description">
+              <p class="mb-3">Containerized a Python script using a custom Docker File, enabling consistent environment replication and scalable deployment via Docker Hub. Configured GitHub Actions, triggering image builds and deployment on every push or pull request to the main branch.</p>
+              <p>Implemented version-controlled workflows with automated build validation, ensuring reliable integration and minimizing manual deployment overhead.</p>
+            </div>
+            <a href="https://github.com/geeta02/dockerimagehub.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card bg-gray-700 rounded-lg overflow-hidden">
+          <div class="p-6">
+            <div class="project-date">Nov 2024 – Jan 2025</div>
+            <h3 class="text-xl font-semibold mb-2">Sentiment Analysis using Large Language Models</h3>
+            <div class="project-description">
+              <p class="mb-3">Fine-tuned RoBERTa model on Amazon Reviews datasets, achieving 96% accuracy with F1-scores of 0.60 (minority) and 0.98 (majority) through class balancing and weighted loss.</p>
+              <p>Applied random oversampling and back-translation data augmentation to mitigate dataset imbalance and enhance model generalizability.</p>
+            </div>
+            <a href="https://github.com/geeta02/Sentiment-Analysis-Using-LLM.git" target="_blank" class="project-link">
+              View Project <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -238,7 +374,7 @@
     </div>
   </section>
 
-  <!-- Contact Section (with labels) -->
+  <!-- Contact Section -->
   <section id="contact" class="section fade-in">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-8">Contact</h2>
@@ -292,5 +428,6 @@
     }, { threshold: 0.1 });
     fadeInElements.forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
